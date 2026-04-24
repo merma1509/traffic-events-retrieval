@@ -1,0 +1,22 @@
+{
+  "index_name": "congestion",
+  "index_type": "bm25",
+  "token_field": "congestion_tokens",
+  "parameters": {
+    "k1": 1.2,
+    "b": 0.75
+  },
+  "stats": {
+    "build_time": 4.049386,
+    "corpus_size": 544320,
+    "vocab_size": 6,
+    "avg_doc_length": 1.1489197530864197,
+    "total_tokens": 625380,
+    "unique_terms": 6,
+    "postings_count": 625380,
+    "index_size_mb": 9.54254150390625
+  },
+  "created_at": "2026-04-24T14:58:58.903598",
+  "corpus_size": 544320,
+  "index_path": "data\\indices\\congestion_bm25.pkl"
+}

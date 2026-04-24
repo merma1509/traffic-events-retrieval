@@ -1,0 +1,22 @@
+{
+  "index_name": "temporal",
+  "index_type": "bm25",
+  "token_field": "temporal_tokens",
+  "parameters": {
+    "k1": 1.2,
+    "b": 0.75
+  },
+  "stats": {
+    "build_time": 0.670144,
+    "corpus_size": 544320,
+    "vocab_size": 1,
+    "avg_doc_length": 1.0,
+    "total_tokens": 42120,
+    "unique_terms": 1,
+    "postings_count": 42120,
+    "index_size_mb": 0.6427001953125
+  },
+  "created_at": "2026-04-24T14:59:58.277335",
+  "corpus_size": 544320,
+  "index_path": "data\\indices\\temporal_bm25.pkl"
+}

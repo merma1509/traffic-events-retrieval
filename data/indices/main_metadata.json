@@ -1,0 +1,22 @@
+{
+  "index_name": "main",
+  "index_type": "bm25",
+  "token_field": "all_tokens",
+  "parameters": {
+    "k1": 1.2,
+    "b": 0.75
+  },
+  "stats": {
+    "build_time": 10.354609,
+    "corpus_size": 544320,
+    "vocab_size": 3851,
+    "avg_doc_length": 24.199131025867135,
+    "total_tokens": 13172071,
+    "unique_terms": 3851,
+    "postings_count": 13172071,
+    "index_size_mb": 200.98985290527344
+  },
+  "created_at": "2026-04-24T14:58:28.666343",
+  "corpus_size": 544320,
+  "index_path": "data\\indices\\main_bm25.pkl"
+}

@@ -1,0 +1,22 @@
+{
+  "index_name": "fast_test",
+  "index_type": "bm25",
+  "token_field": "all_tokens",
+  "parameters": {
+    "k1": 1.2,
+    "b": 0.75
+  },
+  "stats": {
+    "build_time": 0.033327,
+    "corpus_size": 1000,
+    "vocab_size": 34,
+    "avg_doc_length": 213.009,
+    "total_tokens": 213009,
+    "unique_terms": 34,
+    "postings_count": 32309,
+    "index_size_mb": 0.4929962158203125
+  },
+  "created_at": "2026-04-24T17:22:15.088603",
+  "corpus_size": 1000,
+  "index_path": "data\\indices\\fast_test_bm25.pkl"
+}

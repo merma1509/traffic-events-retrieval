@@ -1,0 +1,46 @@
+{
+  "export_time": "2026-04-24T14:28:35.766554",
+  "total_indices": 5,
+  "indices": {
+    "main": {
+      "index_type": "bm25",
+      "corpus_size": 6,
+      "vocab_size": 34,
+      "avg_doc_length": 7.5,
+      "build_time": 0.0,
+      "created_at": "2026-04-24T14:28:35.704414"
+    },
+    "congestion": {
+      "index_type": "bm25",
+      "corpus_size": 6,
+      "vocab_size": 6,
+      "avg_doc_length": 1.3333333333333333,
+      "build_time": 0.000508,
+      "created_at": "2026-04-24T14:28:35.710527"
+    },
+    "weather": {
+      "index_type": "bm25",
+      "corpus_size": 6,
+      "vocab_size": 6,
+      "avg_doc_length": 1.1666666666666667,
+      "build_time": 0.0,
+      "created_at": "2026-04-24T14:28:35.723432"
+    },
+    "spatial": {
+      "index_type": "bm25",
+      "corpus_size": 6,
+      "vocab_size": 6,
+      "avg_doc_length": 1.0,
+      "build_time": 0.0,
+      "created_at": "2026-04-24T14:28:35.738707"
+    },
+    "temporal": {
+      "index_type": "bm25",
+      "corpus_size": 6,
+      "vocab_size": 3,
+      "avg_doc_length": 1.0,
+      "build_time": 0.0,
+      "created_at": "2026-04-24T14:28:35.743767"
+    }
+  }
+}
