@@ -9,3 +9,4 @@ retrieval-venv/*
 *.egg-info
 *.egg-info/*
 main.py
+tests/
