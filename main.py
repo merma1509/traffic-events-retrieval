@@ -7,9 +7,9 @@ sys.path.append('src')
 
 from data.traffic_loader import TrafficWeatherDataLoader
 from data.document_generator import TrafficEventDocumentGenerator
-from indexing import IndexManager
+from indexing.index_manager import IndexManager
 from retrieval.retrieval_engine import RetrievalEngine
-from evaluation import EvaluationFramework
+from evaluation.evaluator import EvaluationFramework
 
 
 @click.group()
@@ -87,30 +87,41 @@ def build_index(corpus, output):
 
 @cli.command()
 @click.option('--query', required=True, help='Search query')
-@click.option('--index', default='./indices', help='Index directory')
-@click.option('--top-k', default=10, help='Number of results to return')
+@click.option('--index', default='data/indices', help='Index directory')
+@click.option('--k', default=10, help='Number of results to return')
 @click.option('--strategy', default='smart', help='Search strategy (smart, multi, basic, specialized)')
-def search(query, index, top_k, strategy):
+def search(query, index, k, strategy):
     """Search traffic events"""
     print(f"Searching for: '{query}'")
     print(f"Index: {index}")
-    print(f"Top K: {top_k}")
+    print(f"K: {k}")
     print(f"Strategy: {strategy}")
     
     # Initialize retrieval engine
     retrieval_engine = RetrievalEngine(indices_dir=index)
     
     # Perform search
-    results = retrieval_engine.search(query, top_k=top_k, strategy=strategy)
+    results = retrieval_engine.search(query, k=k, strategy=strategy)
     
     # Display results
-    print(f"\nFound {len(results)} results:")
-    for i, result in enumerate(results, 1):
-        print(f"\n{i}. {result['doc_id']}")
-        print(f"   Score: {result['score']:.4f}")
-        print(f"   Text: {result['text'][:100]}...")
-        print(f"   Congestion: {result.get('congestion_level', 'N/A')}")
-        print(f"   Weather: {result.get('weather_condition', 'N/A')}")
+    search_results = results.get('results', [])
+    print(f"\nFound {len(search_results)} results:")
+    for i, result in enumerate(search_results, 1):
+        print(f"\n{i}. {result.get('doc_id', 'N/A')}")
+        print(f"   Score: {result.get('score', 0):.4f}")
+        if 'document' in result:
+            doc = result['document']
+            print(f"   Text: {doc.get('text', 'N/A')[:100]}...")
+            print(f"   Congestion: {doc.get('congestion_level', 'N/A')}")
+            print(f"   Weather: {doc.get('weather_condition', 'N/A')}")
+        else:
+            print(f"   Data: {result}")
+    
+    # Show search metadata
+    metadata = results.get('metadata', {})
+    if metadata:
+        print(f"\nSearch time: {metadata.get('search_time', 0):.3f}s")
+        print(f"Strategy used: {metadata.get('strategy_used', 'N/A')}")
     
     print("\nSearch complete!")
 
@@ -170,7 +181,7 @@ def evaluate(corpus, queries, output, k_values):
 
 
 @cli.command()
-@click.option('--index', default='./indices', help='Index directory')
+@click.option('--index', default='data/indices', help='Index directory')
 def demo(index):
     """Interactive demo of the search system"""
     print("RoutiQ IR - Interactive Demo")
@@ -205,16 +216,27 @@ def demo(index):
                 top_k = 10
             
             # Perform search
-            results = retrieval_engine.search(query, top_k=top_k, strategy=strategy)
+            results = retrieval_engine.search(query, k=top_k, strategy=strategy)
             
             # Display results
-            print(f"\nFound {len(results)} results:")
-            for i, result in enumerate(results, 1):
-                print(f"\n{i}. {result['doc_id']}")
-                print(f"   Score: {result['score']:.4f}")
-                print(f"   Text: {result['text'][:100]}...")
-                print(f"   Congestion: {result.get('congestion_level', 'N/A')}")
-                print(f"   Weather: {result.get('weather_condition', 'N/A')}")
+            search_results = results.get('results', [])
+            print(f"\nFound {len(search_results)} results:")
+            for i, result in enumerate(search_results, 1):
+                print(f"\n{i}. {result.get('doc_id', 'N/A')}")
+                print(f"   Score: {result.get('score', 0):.4f}")
+                if 'document' in result:
+                    doc = result['document']
+                    print(f"   Text: {doc.get('text', 'N/A')[:100]}...")
+                    print(f"   Congestion: {doc.get('congestion_level', 'N/A')}")
+                    print(f"   Weather: {doc.get('weather_condition', 'N/A')}")
+                else:
+                    print(f"   Data: {result}")
+            
+            # Show search metadata
+            metadata = results.get('metadata', {})
+            if metadata:
+                print(f"\nSearch time: {metadata.get('search_time', 0):.3f}s")
+                print(f"Strategy used: {metadata.get('strategy_used', 'N/A')}")
             
         except KeyboardInterrupt:
             print("\nGoodbye!")

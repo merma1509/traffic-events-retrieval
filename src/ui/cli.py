@@ -6,6 +6,7 @@ from pathlib import Path
 
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
+sys.path.append(str(Path(__file__).parent.parent))
 
 class TrafficSearchCLI:
     """Command-line interface for traffic search system"""

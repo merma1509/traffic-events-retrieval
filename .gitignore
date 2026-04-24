@@ -8,5 +8,7 @@ retrieval-venv/*
 *.bat
 *.egg-info
 *.egg-info/*
-main.py
 tests/
+.ipynb_checkpoints
+*.ipynb
+notebooks/
