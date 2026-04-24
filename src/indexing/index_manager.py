@@ -142,7 +142,20 @@ class IndexManager:
     
     def list_indices(self) -> List[str]:
         """List all available indices"""
+        # First, try to load any existing indices on disk
+        self._discover_and_load_indices()
         return list(self.indices.keys())
+    
+    def _discover_and_load_indices(self):
+        """Discover and load existing indices from disk"""
+        if not self.indices_dir.exists():
+            return
+        
+        # Look for metadata files
+        for metadata_file in self.indices_dir.glob("*_metadata.json"):
+            index_name = metadata_file.stem.replace("_metadata", "")
+            if index_name not in self.indices:
+                self.load_index(index_name)
     
     def create_specialized_indices(self, corpus: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
         """Create specialized indices for different token types"""

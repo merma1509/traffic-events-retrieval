@@ -6,8 +6,8 @@ from datetime import datetime
 import pandas as pd
 
 from .metrics import EvaluationMetrics
-from ..retrieval import RetrievalEngine
-from ..indexing import IndexManager
+from retrieval import RetrievalEngine
+from indexing import IndexManager
 
 
 class EvaluationFramework:

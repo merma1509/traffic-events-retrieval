@@ -1,4 +1,3 @@
-from .streamlit_app import TrafficSearchApp
-from .cli import TrafficSearchCLI
+from .streamlit_app import EnhancedTrafficSearchApp
 
-__all__ = ['TrafficSearchApp', 'TrafficSearchCLI']
+__all__ = ['EnhancedTrafficSearchApp']
