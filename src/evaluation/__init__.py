@@ -1,4 +1,4 @@
-from .metrics import MAPMetric, PrecisionAtK, RecallAtK
-from .benchmark import BenchmarkSuite
+from .metrics import EvaluationMetrics
+from .evaluator import EvaluationFramework
 
-__all__ = ['MAPMetric', 'PrecisionAtK', 'RecallAtK', 'BenchmarkSuite']
+__all__ = ['EvaluationMetrics', 'EvaluationFramework']
