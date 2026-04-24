@@ -1,0 +1,11 @@
+__pycache__
+__pycache__/*
+.venv
+.venv/*
+retrieval-venv
+retrieval-venv/*
+*.exe
+*.bat
+*.egg-info
+*.egg-info/*
+main.py
