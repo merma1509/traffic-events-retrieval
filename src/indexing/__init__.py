@@ -1,4 +1,4 @@
-from .bm25 import BM25Indexer
-from .indexer import IndexManager
+from .bm25_indexer import BM25Indexer
+from .index_manager import IndexManager
 
 __all__ = ['BM25Indexer', 'IndexManager']
