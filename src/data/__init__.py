@@ -1,10 +1,13 @@
-from .loaders import TrafficWeatherDataLoader, KigaliNetworkLoader
+"""
+Data loading and processing components for traffic events retrieval system.
+"""
+
+from .loaders import TrafficWeatherDataLoader
 from .generators import TrafficEventDocumentGenerator
-from .preprocessors import TrafficTextPreprocessor
+# from .preprocessors import TrafficTextPreprocessor
 
 __all__ = [
     'TrafficWeatherDataLoader',
-    'KigaliNetworkLoader', 
     'TrafficEventDocumentGenerator',
-    'TrafficTextPreprocessor'
+    # 'TrafficTextPreprocessor'
 ]

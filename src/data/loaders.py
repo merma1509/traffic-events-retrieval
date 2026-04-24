@@ -1,4 +1,7 @@
-from .traffic_loader import TrafficWeatherDataLoader
-from .network_loader import KigaliNetworkLoader
+"""
+Data loading components for traffic events retrieval system.
+"""
 
-__all__ = ['TrafficWeatherDataLoader', 'KigaliNetworkLoader']
+from .traffic_loader import TrafficWeatherDataLoader
+
+__all__ = ['TrafficWeatherDataLoader']

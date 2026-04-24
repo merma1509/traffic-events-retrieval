@@ -1,4 +1,6 @@
-"""Document generation components for traffic events retrieval system"""
+"""
+Document generation components for traffic events retrieval system.
+"""
 
 from .document_generator import TrafficEventDocumentGenerator
 
