@@ -13,14 +13,12 @@ tests/
 *.ipynb
 notebooks/
 
-# Large data files
-data/processed/*.json
-data/processed/*.csv
-data/processed/*.pkl
-data/indices/*.pkl
-data/indices/*.json
-data/raw/*.csv
-data/raw/*.json
-*.json
-*.csv
-*.pkl
+# Large data files handled by Git LFS (see .gitattributes)
+# Only ignore temporary/cache files
+data/processed/*_temp.*
+data/processed/*_cache.*
+data/indices/*_temp.*
+data/indices/*_cache.*
+
+# Files too large for GitHub LFS limits
+data/processed/traffic_corpus_20260424_143258.json
