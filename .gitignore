@@ -12,3 +12,15 @@ tests/
 .ipynb_checkpoints
 *.ipynb
 notebooks/
+
+# Large data files
+data/processed/*.json
+data/processed/*.csv
+data/processed/*.pkl
+data/indices/*.pkl
+data/indices/*.json
+data/raw/*.csv
+data/raw/*.json
+*.json
+*.csv
+*.pkl
