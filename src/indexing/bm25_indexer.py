@@ -163,13 +163,15 @@ class BM25Indexer:
         
         # Query expansion based on vocabulary
         expanded_terms = []
+        vocab_terms = list(self.term_index.keys())
+        
         for term in query_terms:
             # Direct match
             if term in self.term_index:
                 expanded_terms.append(term)
             
             # Fuzzy matching for compound terms
-            for vocab_term in self.term_index.keys():
+            for vocab_term in vocab_terms:
                 if term in vocab_term.split('_'):
                     expanded_terms.append(vocab_term)
         

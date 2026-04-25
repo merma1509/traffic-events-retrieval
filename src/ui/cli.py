@@ -23,26 +23,21 @@ class TrafficSearchCLI:
     def search(self, query: str, k: int = 10):
         """Perform search from CLI"""
         try:
-            from indexing.bm25_indexer import BM25Indexer
+            from retrieval.retrieval_engine import RetrievalEngine
             
-            # Create sample index for CLI
-            sample_docs = [
-                {"doc_id": "1", "text": "Heavy traffic congestion on main road", "all_tokens": ["heavy", "traffic", "congestion", "main", "road"]},
-                {"doc_id": "2", "text": "Rain causing poor visibility", "all_tokens": ["rain", "poor", "visibility"]},
-                {"doc_id": "3", "text": "Traffic accident blocking lanes", "all_tokens": ["traffic", "accident", "blocking", "lanes"]},
-            ]
+            # Use production retrieval engine with existing indices
+            retrieval_engine = RetrievalEngine(indices_dir="data/indices")
             
-            indexer = BM25Indexer()
-            indexer.build_index(sample_docs, "all_tokens")
-            
-            results = indexer.search(query, k=k)
+            results = retrieval_engine.search(query, k=k, strategy="smart")
+            search_results = results.get('results', [])
             
             print(f"\nSearch Results for: '{query}'")
-            print(f"Found {len(results)} results\n")
+            print(f"Found {len(search_results)} results\n")
             
-            for i, (doc_id, score, doc) in enumerate(results, 1):
-                print(f"{i}. {doc['text']}")
-                print(f"   Score: {score:.4f}")
+            for i, result in enumerate(search_results, 1):
+                doc = result.get('document', {})
+                print(f"{i}. {doc.get('text', 'N/A')}")
+                print(f"   Score: {result.get('score', 0):.4f}")
                 print()
                 
         except Exception as e:
