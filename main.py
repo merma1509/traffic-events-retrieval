@@ -127,7 +127,7 @@ def search(query, index, k, strategy):
 
 
 @cli.command()
-@click.option('--corpus', required=True, help='Path to corpus file (CSV or PKL)')
+@click.option('--corpus', default='data/processed/traffic_corpus_20260424_143258.csv', help='Path to corpus file (CSV or PKL)')
 @click.option('--queries', help='Path to queries file (JSON format)')
 @click.option('--output', default='./evaluation_results.json', help='Output file for results')
 @click.option('--k-values', default='1,3,5,10', help='K values for evaluation (comma-separated)')

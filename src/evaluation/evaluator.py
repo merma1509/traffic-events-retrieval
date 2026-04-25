@@ -136,14 +136,29 @@ class EvaluationFramework:
         # Evaluate each query
         all_query_results = []
         
-        for i, query in enumerate(queries):
-            print(f"\nEvaluating query {i+1}: '{query}'")
+        for i, query_obj in enumerate(queries):
+            # Extract query text from query object
+            if isinstance(query_obj, dict):
+                query_text = query_obj.get('text', str(query_obj))
+                query_id = query_obj.get('query_id', f'q{i+1}')
+            else:
+                query_text = str(query_obj)
+                query_id = f'q{i+1}'
+            
+            print(f"\nEvaluating query {i+1}: '{query_text}'")
             
             # Get search results
-            search_results = self.retrieval_engine.search(query, strategy="smart", k=max(k_values))
+            search_results = self.retrieval_engine.search(query_text, strategy="smart", k=max(k_values))
             
             # Get relevant documents for this query
-            relevant_docs = qrels.get(query, set())
+            if isinstance(query_obj, dict):
+                relevant_docs_list = []
+                for qrel in qrels:
+                    if qrel.get('query_id') == query_id:
+                        relevant_docs_list.extend(qrel.get('relevant_docs', []))
+                relevant_docs = set(relevant_docs_list)
+            else:
+                relevant_docs = qrels.get(query, set())
             
             # Evaluate this query
             query_evaluation = self.metrics_calculator.evaluate_query(

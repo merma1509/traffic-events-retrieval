@@ -157,9 +157,24 @@ class BM25Indexer:
         Returns:
             List of (doc_id, score, document) tuples
         """
-        # Simple tokenization (in production, use the same preprocessor)
+        # Enhanced tokenization and query expansion
         query_terms = query.lower().split()
         query_terms = [term.strip() for term in query_terms if term.strip()]
+        
+        # Query expansion based on vocabulary
+        expanded_terms = []
+        for term in query_terms:
+            # Direct match
+            if term in self.term_index:
+                expanded_terms.append(term)
+            
+            # Fuzzy matching for compound terms
+            for vocab_term in self.term_index.keys():
+                if term in vocab_term.split('_'):
+                    expanded_terms.append(vocab_term)
+        
+        # Remove duplicates
+        query_terms = list(set(expanded_terms))
         
         if not query_terms:
             return []
