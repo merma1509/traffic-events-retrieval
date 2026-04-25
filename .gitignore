@@ -20,5 +20,5 @@ data/processed/*_cache.*
 data/indices/*_temp.*
 data/indices/*_cache.*
 
-# Files too large for GitHub LFS limits - now handled by LFS
-# data/processed/traffic_corpus_20260424_143258.json
+# Files too large for GitHub LFS limits
+data/processed/traffic_corpus_20260424_143258.json
