@@ -111,6 +111,25 @@ Query → Analysis & Expansion → Smart Routing → BM25 Scoring → Ranked Res
 Precision@10: 0.82 | Recall@10: 0.78 | MAP: 0.75 | nDCG@10: 0.81
 ```
 
+## Visualizations
+
+Comprehensive performance analysis with real traffic data (544,320 events):
+
+- **Evaluation Metrics Dashboard**: Precision@K, Recall@K, NDCG@K performance across different K values
+- **Search Strategy Comparison**: Performance analysis of Smart, Multi, Specialized, and Basic strategies  
+- **Traffic Data Analysis**: Highway distribution, vehicle patterns, weather impact, and temporal analysis
+- **Index Performance**: Build times, query speeds, and memory usage across specialized indices
+- **Query Performance**: Response time distribution and success rate analysis
+- **Interactive Dashboard**: Web-based exploration of all metrics
+
+Generate visualizations:
+
+```bash
+python src/visuals/generate_viz.py
+```
+
+All charts saved in `visualizations/` directory with interactive HTML dashboard included.
+
 ## Advanced Usage
 
 ### Search Strategies
